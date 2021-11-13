@@ -69,6 +69,8 @@ function render() {
     //Delete button functionality
     deleteBtn.addEventListener("click", function () {
       nameArray.splice(i, 1);
+      dateArray.splice(i, 1);
+      amountArray.splice(i, 1);
       render();
     });
     //Adding Total DOM
