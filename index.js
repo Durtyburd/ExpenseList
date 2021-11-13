@@ -3,7 +3,6 @@
 //Variables//
 //Boolean variables
 let inputComplete = true;
-
 //Input variables
 const nameInput = document.querySelector(".nameInput");
 const dateInput = document.querySelector(".dateInput");
@@ -37,6 +36,7 @@ render();
 function render() {
   table.innerHTML = "";
   tr.innerHTML = "";
+  let total = 0;
   for (
     let i = 0;
     i < nameArray.length && i < dateArray.length && i < amountArray.length;
@@ -71,13 +71,25 @@ function render() {
       nameArray.splice(i, 1);
       render();
     });
+    //Adding Total DOM
+    let score = Number(amountArray[i]);
+    total += score;
+    console.log(score);
+    //
+    if (total > 1000) {
+      document.body.style.backgroundColor = "red";
+    } else {
+      document.body.style.backgroundColor = "green";
+    }
+    //
   }
-}
+  document.querySelector(".total").textContent = total;
 
-//Adding Expense functionality
-add.addEventListener("click", create);
-document.addEventListener("keydown", function (enter) {
-  if (enter.key === "Enter") {
-    create();
-  }
-});
+  //Adding Expense functionality
+  add.addEventListener("click", create);
+  document.addEventListener("keydown", function (enter) {
+    if (enter.key === "Enter") {
+      create();
+    }
+  });
+}
